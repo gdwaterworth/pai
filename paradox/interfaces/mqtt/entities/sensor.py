@@ -1,6 +1,21 @@
 from paradox.interfaces.mqtt.entities.abstract_entity import AbstractEntity
 from paradox.lib.utils import sanitize_key
 
+class ZoneStatusSensor(AbstractEntity):
+    def __init__(self, entity, property: str, device, availability_topic: str):
+        super().__init__(device, availability_topic)
+
+        self.label = entity.get("label", entity["key"].replace("_", " "))
+        self.property = property
+
+        self.key = sanitize_key(entity["key"])
+
+        self.hass_entity_type = "sensor"
+
+    def serialize(self):
+        config = super().serialize()
+
+        return config
 
 class PAIStatusSensor(AbstractEntity):
     def __init__(self, run_status_topic, device, availability_topic):
