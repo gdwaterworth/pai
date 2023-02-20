@@ -7,9 +7,7 @@ class ZoneStatusSensor(AbstractEntity):
 
         self.label = entity.get("label", entity["key"].replace("_", " "))
         self.property = property
-
         self.key = sanitize_key(entity["key"])
-
         self.hass_entity_type = "sensor"
 
     def serialize(self):
