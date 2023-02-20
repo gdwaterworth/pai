@@ -12,7 +12,7 @@ class ZoneStatusSensor(AbstractEntity):
 
     def serialize(self):
         config = super().serialize()
-
+        del config["availability_topic"]
         return config
 
 class PAIStatusSensor(AbstractEntity):
